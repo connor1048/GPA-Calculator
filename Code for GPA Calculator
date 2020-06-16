@@ -1,0 +1,44 @@
+# Step 1: Get the total number of credits earned/hours earned from user
+
+TotCred = input("Enter your total number of credits earned: ")
+while not TotCred.isdigit():
+    TotCred = input("Error, please enter your total number of credits earned: ")
+
+TotHours = input("Enter your total number of GPA hours: ")
+while not TotHours.isdigit():
+    TotHours = input("Error, please enter your total number of GPA hours: ")
+
+
+# Step 2: Calculate GPA and give it back to user
+
+GPA = float(TotCred) / float(TotHours)
+print("Your GPA is:", round(GPA,2))
+
+# Step 3: Ask what GPA they would like and give them how many credits off they are from their goal
+
+Goal = input("Enter your desired GPA: ")
+
+while not Goal.isdigit():
+    Goal = input("Error, please enter desired GPA: ")
+
+Goal = float(Goal)
+
+while 5 < Goal or 1 > Goal:
+    Goal = float(input("Error, please enter your desired GPA: "))
+
+Credsneed = float(TotHours) * float(Goal)
+Credsneed = float(Credsneed) - float(TotCred)
+
+print("If you had", round(Credsneed,2) ,"more credits, you would have a", round(Goal,2) , "overall GPA")
+
+# Step 4: How many "a"s do you need to get desired grade
+
+newGPA = GPA
+a = 0
+while newGPA < Goal:
+     TotCred = float(TotCred) + 12
+     TotHours = float(TotHours) + 3
+     newGPA = float(TotCred) / float(TotHours)
+     a = int(a) + 1
+
+print("You need to get", a , "more A's to have a", round(newGPA,2) , "overall GPA")
